@@ -52,12 +52,33 @@ files `00_fetch_data.py` produced — no network calls in the notebook itself.
 
 ## Findings
 
+**The big picture, across all 94 resorts with usable elevation data:**
+
+| Metric | Count | % of resorts |
+|---|---|---|
+| Fully exposed (100% of piste length below 1800m) | 28 | 29.8% |
+| Majority exposed (≥50% below 1800m) | 61 | 64.9% |
+| Substantial safe terrain (≥50 km of piste above 1800m) | 12 | 12.8% |
+
+Nearly two-thirds of Tirol's ski areas have most of their piste network below the current
+snow-reliability line, and fewer than 1 in 8 have a genuinely large amount of safe, high-altitude
+terrain to fall back on. The detailed rankings below show which resorts fall into each group.
+
 **Zero exposure — genuinely snow-secure terrain.** Nine resorts show 0% of piste length below
 1800m: Stablein - Vent, Pitztaler Gletscher, Kaunertaler Gletscher, Kühtai, Albonagrat - St. Anton,
 Obergurgl, Lämmerbichl-Rastkogel - Tux, Staller Sattel - St. Jakob in Defereggen, and the
 Ötztal-Pitztal glacier connection — all either glacier resorts or high-altitude terrain. Hochgurgl
 rounds out the top 10 at just 0.4% (0.2 of 42 km). The ranking by % and by absolute km is nearly
 identical for this group, which cross-validates the result regardless of how exposure is measured.
+
+**The opposite extreme — total exposure.** 28 resorts show exactly 100% of piste length below
+1800m — including Markbachjoch-Wildschönau, Hochalm-Berwang-Bichlbach, Gschwandtkopf, and 25
+others, almost all small, low-altitude local areas. But the most striking single result sits just
+above that group: **Schiwelt Wilder Kaiser-Brixental — one of Tirol's largest and best-known
+resorts, with 414.8 km of piste — is at 99.7% exposure**, essentially its entire terrain below the
+snow-reliability line. This is a genuine exception to the pattern: it's not only small, obscure
+resorts at risk — one of the region's flagship destinations is nearly as exposed as the smallest
+local hills.
 
 **Most "safe" terrain in absolute km (above 1800m, by difficulty).** Komperdell
 (Serfaus-Fiss-Ladis) leads with 324 km of piste above the threshold — dominated by intermediate
@@ -76,13 +97,14 @@ Birkhahn-Galtür (3.18), Hochimst (2.67), Marienbergjoch (2.48) — a mostly dif
 set of resorts than the raw-count leaders. Notably, Ötztaler Gletscher / Sölden appears at #7
 (2.39/km²) despite its huge absolute size — it's genuinely densely developed, not just big.
 
-**Headline comparison — scale vs. intensity.** Raw venue count and density-per-km² tell different
-stories: the biggest resorts dominate by sheer volume of infrastructure, but several much smaller,
-less-marketed resorts are more intensively developed per square kilometer. Meanwhile, the
-snow-security picture is dominated almost entirely by glacier and high-altitude resorts — exactly
-the terrain that's naturally too high and too remote to have built up dense on-mountain venue
-infrastructure in the first place. Full results for every resort, including the complete
-most-to-least exposure ranking, are in the CSV files alongside this notebook.
+**Headline comparison — scale vs. intensity, and where real risk concentrates.** Raw venue count
+and density-per-km² tell different stories: the biggest resorts dominate by sheer volume of
+infrastructure, but several much smaller, less-marketed resorts are more intensively developed per
+square kilometer. Snow-line exposure mostly follows a small-resort pattern too — 28 of 94 resorts
+with usable data are entirely (100%) below 1800m, nearly all small and low-altitude — but
+**Schiwelt Wilder Kaiser-Brixental breaks that pattern**: a major, heavily developed 414.8 km
+resort at 99.7% exposure. Snow-line risk in Tirol isn't confined to small, obscure ski hills; it
+reaches at least one of the region's flagship destinations too.
 
 ![Resort boundaries](images/resort_boundaries_map.png)
 ![Venue density choropleth](images/venue_density_choropleth.png)
