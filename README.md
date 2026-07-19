@@ -52,13 +52,37 @@ files `00_fetch_data.py` produced — no network calls in the notebook itself.
 
 ## Findings
 
-*(Fill in after running Chapters 3a, 3b, 3c, 4, 5 — top 5 from each ranked table)*
+**Zero exposure — genuinely snow-secure terrain.** Nine resorts show 0% of piste length below
+1800m: Stablein - Vent, Pitztaler Gletscher, Kaunertaler Gletscher, Kühtai, Albonagrat - St. Anton,
+Obergurgl, Lämmerbichl-Rastkogel - Tux, Staller Sattel - St. Jakob in Defereggen, and the
+Ötztal-Pitztal glacier connection — all either glacier resorts or high-altitude terrain. Hochgurgl
+rounds out the top 10 at just 0.4% (0.2 of 42 km). The ranking by % and by absolute km is nearly
+identical for this group, which cross-validates the result regardless of how exposure is measured.
 
-- **Least exposed to the rising snow line** (lowest % below 1800m): [fill in top 5]
-- **Most exposed**: [fill in top 5]
-- **Most on-mountain venue density**: [fill in top 5]
-- Headline comparison: [e.g. "SkiWelt has X% of its pistes below the threshold, versus Y% for
-  the glacier resorts" — pull real numbers from 03a_pct_below_1800m.csv]
+**Most "safe" terrain in absolute km (above 1800m, by difficulty).** Komperdell
+(Serfaus-Fiss-Ladis) leads with 324 km of piste above the threshold — dominated by intermediate
+terrain (201.6 km) — followed by Silvretta Schiarena / Ischgl-Samnaun (315 km) and Ötztaler
+Gletscher / Sölden (206 km). These are Tirol's largest high-altitude resort systems, not
+necessarily its most snow-secure by percentage — a resort can have huge safe terrain in absolute
+km while still having significant exposed terrain too.
+
+**Most on-mountain venues (raw count).** Schiwelt Wilder Kaiser-Brixental (62), Ötztaler Gletscher
+/ Sölden (61), Hahnenkamm-Ehrenbachhöhe / part of KitzSki (41), Komperdell / Serfaus-Fiss-Ladis
+(40), Silvretta Schiarena / Ischgl-Samnaun (35) — Tirol's five largest, most commercially
+developed resorts.
+
+**Highest venue density per km².** Neunerköpfle-Tannheim (3.52), Spieljoch (3.25),
+Birkhahn-Galtür (3.18), Hochimst (2.67), Marienbergjoch (2.48) — a mostly different, smaller
+set of resorts than the raw-count leaders. Notably, Ötztaler Gletscher / Sölden appears at #7
+(2.39/km²) despite its huge absolute size — it's genuinely densely developed, not just big.
+
+**Headline comparison — scale vs. intensity.** Raw venue count and density-per-km² tell different
+stories: the biggest resorts dominate by sheer volume of infrastructure, but several much smaller,
+less-marketed resorts are more intensively developed per square kilometer. Meanwhile, the
+snow-security picture is dominated almost entirely by glacier and high-altitude resorts — exactly
+the terrain that's naturally too high and too remote to have built up dense on-mountain venue
+infrastructure in the first place. Full results for every resort, including the complete
+most-to-least exposure ranking, are in the CSV files alongside this notebook.
 
 ![Resort boundaries](images/resort_boundaries_map.png)
 ![Venue density choropleth](images/venue_density_choropleth.png)
