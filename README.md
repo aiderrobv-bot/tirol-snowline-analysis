@@ -140,7 +140,46 @@ appears, avoid activating a conda environment in the same terminal session as th
 
 ## What I learned
 
-[TODO]
+**Applying the "push work to the source" principle at pipeline scale.** The single biggest
+improvement in this project came from treating data acquisition the way a query planner would:
+minimize round-trips, do filtering as close to the data as possible, and only pull back what's
+actually needed. My first version queried the piste API, the elevation service, and the points-of-
+interest source once *per resort* — over 300 network calls for 103 resorts, most of the runtime
+spent on latency rather than computation. Restructuring it to fetch each source exactly once for
+the whole province, then clip and sample locally in memory per resort, cut total runtime from over
+30 minutes to under 90 seconds. The DuckDB query against the cloud-hosted points-of-interest data
+is a direct example: the `WHERE` clause filters by bounding box and category *before* any data
+crosses the network, so only relevant rows are ever transferred — the same principle as an indexed
+database query versus scanning a full table client-side.
+
+**Spatial SQL-equivalent operations, applied through GeoPandas.** The core spatial logic —
+`clip()` to intersect pistes with official resort polygons, `buffer()` combined with `within()` to
+find venues near piste lines, `to_crs()` to reproject before any distance or area calculation —
+mirrors exactly what `ST_Intersection`, `ST_Buffer`, and `ST_Within` do in a spatial database, just
+executed in Python against in-memory GeoDataFrames rather than a running PostGIS instance. Keeping
+that discipline — always reproject to a metric coordinate system (EPSG:31287 for Austria) before
+measuring anything, never trust raw latitude/longitude degrees for distance or area — avoided a
+class of error that would otherwise be easy to miss and hard to detect after the fact.
+
+**Boundary precision matters more than it first appears.** An early version approximated each
+resort's extent with a fixed-radius circle around its center point. In a region as densely
+interconnected as this one, that consistently either bled into a neighboring resort's terrain or
+cut off real piste network at the edges — errors in both directions, resort by resort. Switching
+to the actual official government boundary polygons, and joining against those exactly, resolved
+it completely and made every downstream number trustworthy.
+
+**A ratio is only as good as its denominator.** The area-normalized density calculation initially
+produced one wildly nonsensical value, traced back to a single polygon in the source data with a
+near-zero official area. Rather than silently averaging past it or hiding it with a wider color
+scale, filtering it out explicitly and documenting why turned a bug into a stated, defensible
+modeling decision.
+
+**Multiple data sources, joined systematically rather than bolted on.** The final analysis
+combines four independently-sourced datasets — official administrative boundaries, crowdsourced
+line geometry, a government elevation raster, and cloud-hosted points-of-interest data — through a
+consistent spatial join and normalization pattern rather than ad hoc merging. Working across these
+different formats and access methods within one coherent pipeline, and being deliberate about
+where filtering happens and why, was the most transferable skill this project reinforced.
 
 ## Stack
 
